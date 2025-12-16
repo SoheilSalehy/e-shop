@@ -1,0 +1,22 @@
+    <!-- head -->
+<%- include('../includes/head.ejs') %>
+    <!-- header -->
+<%- include('../includes/heading.ejs') %>
+    <!-- link -->
+<%- include('../includes/navigation.ejs') %>
+    <!-- product -->
+     <div class="all_product_countainer">
+    <% for(let product of prods){ %>
+        <div class="product-container">
+        <h3><%= product.title %></h3>
+        <img src="<%= product.imageUrl %>" alt="تصویر محصول">
+        <div class="price"><%= product.price %> $</div>
+        <div class= 'product_description'><%= product.description %></div>
+        <button class="btn"><a href="/product/<%= product._id %>">جزئیات</a></button>
+        </div>
+    <% } %>
+     </div>
+    
+    
+    <!-- end html -->
+<%- include('../includes/end.ejs') %>

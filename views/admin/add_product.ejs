@@ -1,0 +1,26 @@
+
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/heading.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+<main>
+    <div class="container">
+    <form action="/admin/add_product" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">نام محصول</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام محصول را وارد کنید : " name="title">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">قیمت</label>
+    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="قیمت را وارد کنید : " name="price">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">آدرس عکس</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="آدرس عکس را وارد کنید : " name="imageUrl">
+  </div>
+  <textarea name="description" id="description" placeholder="توضیحات" name="description"></textarea>
+  <button type="submit" class="btn btn-primary" name="submit">ثبت</button>
+    </form>
+    </div>
+</main>
+
+<%- include('../includes/end.ejs') %>

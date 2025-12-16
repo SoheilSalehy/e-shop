@@ -1,0 +1,24 @@
+<%- include('../includes/head.ejs') %>
+    <!-- header -->
+<%- include('../includes/heading.ejs') %>
+    <!-- link -->
+<%- include('../includes/navigation.ejs') %>
+
+
+<div class="product-detail">
+    <div class="product-image">
+        <img src="<%= product.imageUrl %>" alt="Product Image">
+    </div>
+    <div class="product-info">
+        <h1 class="product-title"><%= product.title %></h1>
+        <p class="product-price"><%= product.price %> $</p>
+        <div class="product-description">
+            <%= product.description %>
+        </div>
+    </div>
+
+    
+</div>
+
+
+<%- include('../includes/end.ejs') %>
