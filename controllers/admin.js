@@ -1,3 +1,5 @@
+// === GET ===
+
 const Product = require('../models/product');
 exports.getAddProduct = (req, res) => {
     res.render('admin/add_product',
@@ -20,6 +22,27 @@ exports.getAdminProduct = async (req, res) => {
 
 }
 
+//edit page action
+exports.getEditProduct = async (req, res) => {
+    const editMode = req.query.edit;
+    try {
+        productId = req.params.productId;
+        product = await Product.findById(productId);
+        // to check if product found or not
+        if (!product) return redirect('/');
+        res.render('admin/add_product', {
+            pageTitle: 'Edit product',
+            path: '/admin/edit-product',
+            editing: editMode,
+            Product: product
+        });
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// === POST ===
+
 //post product page action
 exports.postAddProduct = async (req, res) => {
     //import values 
@@ -40,28 +63,24 @@ exports.postAddProduct = async (req, res) => {
 
 }
 
-//edit page action
-exports.getEditProduct = async (req, res) => {
-    const editMode = req.query.edit;
-    try {
-        productId = req.params.productId;
-        product = await Product.findById(productId);
-        // to check if product found or not
-        if (!product) return redirect('/');
-        res.render('admin/edit-product', {
-            pageTitle: 'Edit product',
-            path: '/admin/edit-product',
-            editing: editMode,
-            Product: product
-        });
-    } catch (err) {
-        console.log(err.message);
-    }
+//post edit product action
 
+exports.postEditProduct= async (req,res)=>{
+    const updatedTitle = req.body.title;
+    const updatedPrice = req.body.price;
+    const updatedImageUrl = req.body.imageUrl;
+    const updatedDescription = req.body.description;
+    const prodId = req.body.productId;
+    let product = await Product.findById(prodId);
+    product.title= await updatedTitle;
+    product.price= await updatedPrice;
+    product.imageUrl= await updatedImageUrl;
+    product.description= await updatedDescription;
 
-
+    await product.save();
+    console.log("product edited ...");
+     res.redirect('/');
 }
-
 
 
 

@@ -5,7 +5,7 @@ const adminRouter = require('./routes/admin');
 const shopRouter = require('./routes/shop');
 const app = express();
 const mongoose = require('mongoose');
-const PORT = 3001;
+const PORT = 3000;
 
 //=== port ===
 app.listen(PORT, () => {
