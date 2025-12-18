@@ -205,6 +205,45 @@
     color: #000;
 }
 
+.btn-edit{
+    background-color: rgb(212, 216, 2);
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-edit a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 17px;
+}
+
+.btn-edit a:hover{
+    color: #000;
+}
+
+.btn-remove{
+    background-color: rgb(235, 2, 2);
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-remove a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 17px;
+}
+
+.btn-remove a:hover{
+    color: #000;
+}
 
 .product-detail {
     max-width: 900px;
