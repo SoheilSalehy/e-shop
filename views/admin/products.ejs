@@ -12,7 +12,7 @@
         <img src="<%= product.imageUrl %>" alt="تصویر محصول">
         <div class="price"><%= product.price %> $</div>
         <div class= 'product_description'><%= product.description %></div>
-        <button class="btn-edit"><a href="">ویرایش</a></button>
+        <button class="btn-edit"><a href="/admin/edit-product/<%= product._id %>?edit=true">ویرایش</a></button>
         <button class="btn-remove"><a href="">حذف</a></button>
         </div>
     <% } %>
