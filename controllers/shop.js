@@ -1,4 +1,7 @@
 const product = require('../models/product');
+
+// === GET ===
+
 //get product in main page
 exports.getIndex = (req, res) => {
     product.find().then(product => {
@@ -12,6 +15,18 @@ exports.getIndex = (req, res) => {
     });
 };
 
+exports.getProducts = (erq, res) => {
+    product.find().then(product => {
+        res.render('../views/shop/index.ejs', {
+            path: '/products',
+            pageTitle: 'products',
+            prods: product
+        });
+    }).catch(err => {
+        console.log(err.message);
+    });
+}
+
 exports.getProductDetail = async (req, res) => {
     try {
         const productId = req.params.productId;
@@ -21,9 +36,14 @@ exports.getProductDetail = async (req, res) => {
             pageTitle: Product.title,
             path: '/products'
         });
-    }catch(err){
+    } catch (err) {
         console.log(err.message);
     }
-    
+
 }
+
+
+// === POST ===
+
+
 

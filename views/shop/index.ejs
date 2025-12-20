@@ -12,7 +12,12 @@
         <img src="<%= product.imageUrl %>" alt="تصویر محصول">
         <div class="price"><%= product.price %> $</div>
         <div class= 'product_description'><%= product.description %></div>
-        <button class="btn"><a href="/product/<%= product._id %>">جزئیات</a></button>
+        <div class="btn-container">
+        <button class="btn btn-info"><a href="/product/<%= product._id %>">جزئیات</a></button>
+        <% if(path ==='/products'){%>
+            <%- include('../includes/add-to-cart.ejs') %>
+        <% } %>
+        </div>
         </div>
     <% } %>
      </div>
