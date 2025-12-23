@@ -5,6 +5,7 @@ const adminRouter = require('./routes/admin');
 const shopRouter = require('./routes/shop');
 const app = express();
 const mongoose = require('mongoose');
+//const user = require('./models/user')
 const PORT = 3000;
 
 //=== port ===
@@ -25,6 +26,8 @@ app.set('views', 'views'); // to set the address of views file
 // listen to port 
 mongoose.connect('mongodb://localhost/shop')
 .then(result=>{
+
+
     app.listen(PORT,()=>{
         console.log('listening on port ',PORT);
     })
@@ -33,4 +36,3 @@ mongoose.connect('mongodb://localhost/shop')
     console.log("Error : ",err.message);
 });
 
-// you should work on post product vid66
