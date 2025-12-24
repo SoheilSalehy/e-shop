@@ -31,6 +31,32 @@ const userSchema = new Schema({
     }
 }); 
 
+userSchema.methods.addTocart=(product)=>{
+    const cartProductIndex = this.cart.items.findIndex(cp=>{
+        return cp.productId.toString() === product._id.toString()
+    });
+
+    const newQuaintity = 1;
+    const updateCartItem = [...this.cart.items];
+    if(cartProductIndex>=0){
+        newQuaintity = this.cart.items[cartProductIndex].quantity+1;
+        updateCartItem[cartProductIndex].quantity = newQuaintity;
+
+    }else{
+        updateCartItem.push({
+            productId:product._id,
+            quantity:newQuaintity
+        })
+    }
+    const updatedCart = {
+        items:updatedCartItem
+    };
+
+    this.cart= updatedCart;
+    return this.save();
+}
+
+
 
 module.exports=mongoose.model('User',userSchema);
 

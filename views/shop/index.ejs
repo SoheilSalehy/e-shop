@@ -16,7 +16,9 @@
         <button class="btn btn-info"><a href="/product/<%= product._id %>">جزئیات</a></button>
         <% if(path ==='/products'){%>
             <%- include('../includes/add-to-cart.ejs') %>
-        <% } %>
+        <% }else{ %>
+            <button class="btn btn-info"><a href="/product/<%= product._id %>">افزودن به سبد خرید</a></button>
+            <% } %>
         </div>
         </div>
     <% } %>

@@ -5,7 +5,7 @@ const adminRouter = require('./routes/admin');
 const shopRouter = require('./routes/shop');
 const app = express();
 const mongoose = require('mongoose');
-const User = require('./models/user')
+const User = require('./models/user');
 const PORT = 3000;
 
 //=== port ===
@@ -18,6 +18,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/admin', adminRouter);
 app.use(shopRouter);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+    User.findById('694a9e3f9a6cf83d1421527d').then(user => {
+        req.user = user;
+        next();
+    }).catch(err => {
+        console.log(err.message);
+    })
+})
+
 
 //=== set ===
 app.set('view engine', 'ejs'); // set ejs render for template engine
@@ -31,11 +40,9 @@ mongoose.connect('mongodb://localhost/shop')
                 const user = new User({
                     name: 'soheil',
                     email: 'solyacount@gmail.com',
-                    cart:{
-                        item:[]
+                    cart: {
+                        item: []
                     }
-                    
-                    
                 });
                 //694a9e3f9a6cf83d1421527d
             }
