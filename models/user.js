@@ -31,21 +31,21 @@ const userSchema = new Schema({
     }
 }); 
 
-userSchema.methods.addTocart=(product)=>{
+userSchema.methods.addTocart= function(product){
     const cartProductIndex = this.cart.items.findIndex(cp=>{
         return cp.productId.toString() === product._id.toString()
     });
 
-    const newQuaintity = 1;
-    const updateCartItem = [...this.cart.items];
+    let newQuantity = 1;
+    const updatedCartItem = [...this.cart.items];
     if(cartProductIndex>=0){
-        newQuaintity = this.cart.items[cartProductIndex].quantity+1;
-        updateCartItem[cartProductIndex].quantity = newQuaintity;
+        newQuantity = this.cart.items[cartProductIndex].quantity+1;
+        updatedCartItem[cartProductIndex].quantity = newQuantity;
 
     }else{
-        updateCartItem.push({
+        updatedCartItem.push({
             productId:product._id,
-            quantity:newQuaintity
+            quantity:newQuantity
         })
     }
     const updatedCart = {
