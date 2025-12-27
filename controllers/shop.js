@@ -1,5 +1,5 @@
 const product = require('../models/product');
-const User = require('../models/user');
+const user = require('../models/user');
 
 // === GET ===
 
@@ -50,7 +50,7 @@ exports.postCart=(req,res)=>{
     const prodId = req.body.productId;
     product.findById(prodId)
     .then(product=>{
-        return req.User.addTocart(product);
+        return req.user.addTocart(product); 
     });
 }
 

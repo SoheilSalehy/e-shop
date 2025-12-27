@@ -14,18 +14,19 @@ app.listen(PORT, () => {
 });
 
 //=== middleware ===
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/admin', adminRouter);
-app.use(shopRouter);
-app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
-    User.findById('694fa0cb8a8511ed82f93275').then(user => {
+    User.findById('694ffb32f83393220b95da59').then(user => {
         req.user = user;
         next();
     }).catch(err => {
         console.log(err.message);
     })
 })
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/admin', adminRouter);
+app.use(shopRouter);
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 //=== set ===
