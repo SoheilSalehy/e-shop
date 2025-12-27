@@ -1,4 +1,5 @@
 const product = require('../models/product');
+const User = require('../models/user');
 
 // === GET ===
 
@@ -45,5 +46,11 @@ exports.getProductDetail = async (req, res) => {
 
 // === POST ===
 
-
+exports.postCart=(req,res)=>{
+    const prodId = req.body.productId;
+    product.findById(prodId)
+    .then(product=>{
+        return req.User.addTocart(product);
+    });
+}
 

@@ -31,29 +31,29 @@ const userSchema = new Schema({
     }
 }); 
 
-userSchema.methods.addTocart= function(product){
-    const cartProductIndex = this.cart.items.findIndex(cp=>{
+userSchema.methods.addTocart = function(product) {
+    const cartProductIndex = this.cart.items.findIndex(cp => {
         return cp.productId.toString() === product._id.toString()
     });
-
     let newQuantity = 1;
-    const updatedCartItem = [...this.cart.items];
-    if(cartProductIndex>=0){
-        newQuantity = this.cart.items[cartProductIndex].quantity+1;
-        updatedCartItem[cartProductIndex].quantity = newQuantity;
+    const updatedcartItems = [...this.cart.items];
 
-    }else{
-        updatedCartItem.push({
-            productId:product._id,
-            quantity:newQuantity
+    if (cartProductIndex >= 0) {
+        newQuantity = this.cart.items[cartProductIndex].quantity + 1;
+        updatedcartItems[cartProductIndex].quantity = newQuantity;
+    } else {
+        updatedcartItems.push({
+            productId: product._id,
+            quantity: newQuantity
         })
     }
-    const updatedCart = {
-        items:updatedCartItem
-    };
 
-    this.cart= updatedCart;
+    const updatedCart = {
+        items: updatedcartItems
+    };
+    this.cart = updatedCart;
     return this.save();
+
 }
 
 

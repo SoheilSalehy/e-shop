@@ -19,7 +19,7 @@ app.use('/admin', adminRouter);
 app.use(shopRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
-    User.findById('694a9e3f9a6cf83d1421527d').then(user => {
+    User.findById('694fa0cb8a8511ed82f93275').then(user => {
         req.user = user;
         next();
     }).catch(err => {
@@ -43,7 +43,9 @@ mongoose.connect('mongodb://localhost/shop')
                     cart: {
                         item: []
                     }
+                    
                 });
+                user.save();
                 //694a9e3f9a6cf83d1421527d
             }
         })
