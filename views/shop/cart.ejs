@@ -7,18 +7,24 @@
 
 
 <main>
+    <% if(products.length>0){ %>
     <ul class="cart__item-list">
+        <% products.forEach(p=>{ %>
         <li class="cart__item">
             <div>
-                <img src="" class="img-thumbnail" alt="">
+                <img src="<%= p.imageUrl %>" class="img-thumbnail" alt="">
             </div>
-            <h1>عنوان محصول</h1>
-            <h2>1</h2>
+            <h1><%= p.title %></h1>
+            <h2><%= p.quantity %></h2>
             <form action="">
                 <button class="btn-remove">حذف</button>
             </form>
         </li>
+        <% }); %>
     </ul>
+    <% }else{ %>
+        <h1>محصولی یافت نشد</h1>
+        <% } %>
 </main>
 
 

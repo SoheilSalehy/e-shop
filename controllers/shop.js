@@ -16,7 +16,7 @@ exports.getIndex = (req, res) => {
     });
 };
 
-exports.getProducts = (erq, res) => {
+exports.getProducts = (req, res) => {
     product.find().then(product => {
         res.render('../views/shop/index.ejs', {
             path: '/products',
@@ -43,14 +43,26 @@ exports.getProductDetail = async (req, res) => {
 
 }
 
+exports.getCart = async (req, res) => {
+    const userProduct = await req.user.populate('cart.items.productId');
+    res.render('shop/cart', {
+        pageTitle: 'Cart',
+        path: '/cart',
+        products: userProduct.cart.items
+    });
+
+}
+
 
 // === POST ===
 
-exports.postCart=(req,res)=>{
+exports.postCart = (req, res) => {
     const prodId = req.body.productId;
     product.findById(prodId)
-    .then(product=>{
-        return req.user.addTocart(product); 
-    });
+        .then(product => {
+            return req.user.addTocart(product);
+        });
 }
+
+
 
