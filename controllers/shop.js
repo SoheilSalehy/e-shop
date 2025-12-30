@@ -60,8 +60,21 @@ exports.postCart = (req, res) => {
     const prodId = req.body.productId;
     product.findById(prodId)
         .then(product => {
-            return req.user.addTocart(product);
+            req.user.addTocart(product);
+            res.redirect('/cart');
         });
+}
+
+exports.postCartDeleteProduct = (req, res) => {
+    const prodId = req.body.productId;
+    req.user.removeFromeCart(prodId).then(result => {
+        console.log(result);
+        res.redirect('/cart');
+    }).catch(err => {
+        console.log(err.message);
+    })
+
+
 }
 
 

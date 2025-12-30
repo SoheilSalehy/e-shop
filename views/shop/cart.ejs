@@ -12,12 +12,13 @@
         <% products.forEach(p=>{ %>
         <li class="cart__item">
             <div>
-                <img src="<%= p.imageUrl %>" class="img-thumbnail" alt="">
+                <img src="<%= p.productId.imageUrl %>" class="img-thumbnail" alt="">
             </div>
-            <h1><%= p.title %></h1>
+            <h1><%= p.productId.title %></h1>
             <h2><%= p.quantity %></h2>
-            <form action="">
-                <button class="btn-remove">حذف</button>
+            <form action="/cart-delete-item" method="post">
+                <button class="btn-remove" type="submit">حذف</button>
+                <input type="hidden" value="<%= p.productId._id %>" name="productId">
             </form>
         </li>
         <% }); %>

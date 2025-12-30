@@ -55,7 +55,8 @@ exports.postAddProduct = async (req, res) => {
         title: title,
         price: price,
         imageUrl: imageUrl,
-        description: description
+        description: description,
+        userId:req.user
     });
     await product.save();
     console.log("created new product...");

@@ -121,6 +121,11 @@
     height: 50px;
 }
 
+.img-thumbnail{
+    width: 45px;
+    height: 45px;
+}
+
  .btn {
      padding: 10px 15px;
      background: #2196F3;
