@@ -126,6 +126,17 @@
     height: 45px;
 }
 
+.btn-order{
+    display: flex;
+    flex-direction: row;
+}
+
+.countainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
  .btn {
      padding: 10px 15px;
      background: #2196F3;
