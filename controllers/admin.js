@@ -34,7 +34,8 @@ exports.getEditProduct = async (req, res) => {
             pageTitle: 'Edit product',
             path: '/admin/edit-product',
             editing: editMode,
-            Product: product
+            Product: product,
+            userId:req.user
         });
     } catch (err) {
         console.log(err.message);

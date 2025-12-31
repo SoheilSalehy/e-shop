@@ -1,5 +1,5 @@
 const product = require('../models/product');
-const user = require('../models/user');
+const Order = require('../models/order');
 
 // === GET ===
 
@@ -77,5 +77,24 @@ exports.postCartDeleteProduct = (req, res) => {
 
 }
 
-
+exports.postOrder=(req,res)=>{
+    req.user.populate('cart.items.productId')
+    .then(user=>{
+        products = user.cart.items.map(item=>{
+           return{
+            product:{...item.productId._doc},
+            quantity:item.quantity
+           }
+        });
+        const order = new Order({
+            user:{
+                name:req.user.name ,
+                userId:req.user
+            },
+            products:products
+        })
+        console.log(order);
+        return order.save();
+    })   
+}
 
