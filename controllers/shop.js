@@ -51,7 +51,14 @@ exports.getCart = async (req, res) => {
         products: userProduct.cart.items
     });
 
+
 }
+
+
+exports.getOrder = (req,res)=>{
+    res.render('/shop/orders');
+}
+
 
 
 // === POST ===
@@ -95,6 +102,12 @@ exports.postOrder=(req,res)=>{
         })
         console.log(order);
         return order.save();
-    })   
-}
+    }).then(result=>{
+        return req.user.clearCart();
+    }).then(()=>{
+        res.redirect('/orders');
+    }).catch(err=>{
+        console.log(err.message);
+    });
+};
 
