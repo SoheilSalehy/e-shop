@@ -212,6 +212,38 @@
     
 }
 
+.orders{
+    list-style: none;
+    padding: 0%;
+    margin: 0%;
+    text-align: center;
+}
+
+.orders-item{
+    box-shadow: 0 2px 8px  rgba( 0, 0, 0, 0.26);
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.orders-product{
+    list-style: none;
+    margin: 0%;
+    padding: 0%;
+}
+
+.orders-product-item{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: 1px solid #09a74a;
+    color: #09a74a;
+}
+
+.orders-item h1{
+    margin: 0%;
+    font-size: 1rem;
+}
+
+
 .btn-container{
     margin-top: 15px;
     display: flex;

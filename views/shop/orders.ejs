@@ -6,14 +6,24 @@
 <%- include('../includes/navigation.ejs') %>
 
 <main>
-    <ul>
-        <li>
-            <h1>شماره سفارش</h1>
-            <ul>
-                <li>اسم محصول</li>
+    <% if(orders.length<=0){ %>
+        <h1>سفارشی یافت نشد</h1>
+        <% }else{ %>
+    <ul class="orders">
+        <% orders.forEach(order=>{ %>
+        <li class="orders-item">
+            <h1><%= order._id %> سفارش</h1>
+            <ul class="orders-product">
+                <% order.products.forEach(p=>{ %>
+                <li class="orders-product-item">
+                    <%= p.products.title %> (<%= p.quantity %>)
+                </li>
             </ul>
         </li>
+        <% }); %>
     </ul>
+    <% }); %>
+    <% } %>
 </main>
 
 
