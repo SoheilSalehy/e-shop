@@ -56,7 +56,7 @@ exports.getCart = async (req, res) => {
 
 
 exports.getOrder = (req, res) => {
-    Order.findOne({ 'user.userId': req.user._id }).then(orders => {
+    Order.find({ 'user.userId': req.user._id }).then(orders => {
         res.render('shop/orders', {
             pageTitle: 'Orders',
             path: '/orders',

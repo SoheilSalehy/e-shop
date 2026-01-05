@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const adminRouter = require('./routes/admin');
 const shopRouter = require('./routes/shop');
+const authRouter = require('./routes/auth');
 const app = express();
 const mongoose = require('mongoose');
 const User = require('./models/user');
@@ -15,7 +16,7 @@ app.listen(PORT, () => {
 
 //=== middleware ===
 app.use((req, res, next) => {
-    User.findById('694fa0cb8a8511ed82f93275').then(user => {
+    User.findById('694ffb32f83393220b95da59').then(user => {
         req.user = user;
         next();
     }).catch(err => {
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/admin', adminRouter);
 app.use(shopRouter);
+app.use(authRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
 

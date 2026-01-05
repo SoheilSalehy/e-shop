@@ -1,0 +1,32 @@
+   <!-- head -->
+<%- include('../includes/head.ejs') %>
+    <!-- header -->
+<%- include('../includes/heading.ejs') %>
+    <!-- link -->
+<%- include('../includes/navigation.ejs') %>
+
+<form action="/login" method="post">
+<div class="login-container">
+    <h2 class="login-title">ورود به حساب</h2>
+
+    <form class="login-form" action="/login" method="POST">
+        <div class="login-form-control">
+            <label for="email">ایمیل</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="login-form-control">
+            <label for="password">رمز عبور</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button class="login-btn" type="submit">ورود</button>
+    </form>
+</div>
+</form>
+
+
+
+
+
+<%- include('../includes/end.ejs') %>
