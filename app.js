@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const adminRouter = require('./routes/admin');
 const shopRouter = require('./routes/shop');
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
     })
 })
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({secret:'my session',resave:false,saveUninitialized:false }));// session setting
 app.use('/admin', adminRouter);
 app.use(shopRouter);
 app.use(authRouter);
