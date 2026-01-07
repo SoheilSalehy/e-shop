@@ -1,6 +1,6 @@
 // === GET ===
-
 const Product = require('../models/product');
+
 exports.getAddProduct = (req, res) => {
     res.render('admin/add_product',
         { path: '/admin/add_product', pageTitle: 'add product',editing: false })
