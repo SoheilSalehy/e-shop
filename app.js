@@ -9,6 +9,13 @@ const app = express();
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const PORT = 3000;
+const MongoDB_URI = 'mongodb://localhost/shop';
+const MongoDBstore = require ('connect-mongodb-session')(session);
+
+const store = new MongoDBstore({
+    uri:MongoDB_URI,
+    collection:'session'
+});
 
 //=== port ===
 app.listen(PORT, () => {
@@ -25,12 +32,11 @@ app.use((req, res, next) => {
     })
 })
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({secret:'my session',resave:false,saveUninitialized:false }));// session setting
+app.use(session({secret:'my session',resave:false,saveUninitialized:false, store:store}));// session setting
 app.use('/admin', adminRouter);
 app.use(shopRouter);
 app.use(authRouter);
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 //=== set ===
@@ -38,7 +44,7 @@ app.set('view engine', 'ejs'); // set ejs render for template engine
 app.set('views', 'views'); // to set the address of views file
 
 // listen to port 
-mongoose.connect('mongodb://localhost/shop')
+mongoose.connect(MongoDB_URI)
     .then(result => {
         User.findOne().then(user => {
             if (!user) {
