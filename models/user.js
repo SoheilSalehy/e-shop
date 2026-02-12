@@ -3,31 +3,34 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        unique: true,
-        minlength: 3,
-        maxlength: 15
+        //required: true,
+        //unique: true,
+        // minlength: 3,
+        // maxlength: 15
     },
     email: {
         type: String,
         required: true,
-        unique: true,
+        //unique: true,
         minlength: 8,
-        maxlength: 20,
+        maxlength: 35,
         lowercase: true
     },
     cart: {
         items: [{
             productId: {
-                required: true,
+                //required: true,
                 type: Schema.Types.ObjectId,
                 ref: 'product'
             },
             quantity: {
                 type: Number,
-                required: true
+                //required: true
             }
         }]
+    },
+    password:{
+        type:String
     }
 });
 
@@ -58,7 +61,7 @@ userSchema.methods.addTocart = function (product) {
 
 }
 
-// === methods ===
+// === remove from cart method ===
 
 userSchema.methods.removeFromeCart = function (productId) {
     const updatedCartItems = this.cart.items.filter(item => {
@@ -76,4 +79,5 @@ userSchema.methods.clearCart = function () {
 
 
 module.exports = mongoose.model('User', userSchema);
+
 

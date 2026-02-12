@@ -9,7 +9,10 @@ exports.getIndex = (req, res) => {
         res.render('../views/shop/index.ejs', {
             path: '/',
             pageTitle: 'shop',
-            prods: product
+            prods: product,
+            isAuthenticated : req.session.isLoggedIn,
+            csrfToken : req.csrfToken()
+
         });
     }).catch(err => {
         console.log(err.message);
@@ -21,7 +24,9 @@ exports.getProducts = (req, res) => {
         res.render('../views/shop/index.ejs', {
             path: '/products',
             pageTitle: 'products',
-            prods: product
+            prods: product,
+            isAuthenticated : req.session.isLoggedIn,
+            csrfToken : req.csrfToken()
         });
     }).catch(err => {
         console.log(err.message);
@@ -35,7 +40,9 @@ exports.getProductDetail = async (req, res) => {
         res.render('shop/product-details', {
             product: Product,
             pageTitle: Product.title,
-            path: '/products'
+            path: '/products',
+            isAuthenticated : req.session.isLoggedIn,
+            csrfToken : req.csrfToken()
         });
     } catch (err) {
         console.log(err.message);
@@ -48,7 +55,10 @@ exports.getCart = async (req, res) => {
     res.render('shop/cart', {
         pageTitle: 'Cart',
         path: '/cart',
-        products: userProduct.cart.items
+        products: userProduct.cart.items,
+        isAuthenticated : req.session.isLoggedIn,
+        csrfToken : req.csrfToken()
+
     });
 
 
@@ -60,7 +70,10 @@ exports.getOrder = (req, res) => {
         res.render('shop/orders', {
             pageTitle: 'Orders',
             path: '/orders',
-            orders:orders
+            orders:orders,
+            isAuthenticated : req.session.isLoggedIn,
+            csrfToken : req.csrfToken()
+
         });
     })
 

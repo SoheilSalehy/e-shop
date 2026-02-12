@@ -3,18 +3,25 @@ const Product = require('../models/product');
 
 exports.getAddProduct = (req, res) => {
     res.render('admin/add_product',
-        { path: '/admin/add_product', pageTitle: 'add product',editing: false })
+        {
+            path: '/admin/add_product',
+            pageTitle: 'add product',
+            editing: false,
+            isAuthenticated: req.session.isLoggedIn
+        })
 };
 
 //the page that admin go to edit products
 exports.getAdminProduct = async (req, res) => {
-    
+
     try {
         const products = await Product.find()
         res.render('admin/products', {
             prods: products,
             pageTitle: 'admin products',
-            path: '/admin/products'
+            path: '/admin/products',
+            isAuthenticated: req.session.isLoggedIn
+
         });
     } catch (err) {
         console.log(err.message);
@@ -35,7 +42,9 @@ exports.getEditProduct = async (req, res) => {
             path: '/admin/edit-product',
             editing: editMode,
             Product: product,
-            userId:req.user
+            userId: req.user,
+            isAuthenticated: req.session.isLoggedIn
+
         });
     } catch (err) {
         console.log(err.message);
@@ -57,7 +66,7 @@ exports.postAddProduct = async (req, res) => {
         price: price,
         imageUrl: imageUrl,
         description: description,
-        userId:req.user
+        userId: req.user
     });
     await product.save();
     console.log("created new product...");
@@ -67,21 +76,21 @@ exports.postAddProduct = async (req, res) => {
 
 //post edit product action
 
-exports.postEditProduct= async (req,res)=>{
+exports.postEditProduct = async (req, res) => {
     const updatedTitle = req.body.title;
     const updatedPrice = req.body.price;
     const updatedImageUrl = req.body.imageUrl;
     const updatedDescription = req.body.description;
     const prodId = req.body.productId;
     let product = await Product.findById(prodId);
-    product.title= await updatedTitle;
-    product.price= await updatedPrice;
-    product.imageUrl= await updatedImageUrl;
-    product.description= await updatedDescription;
+    product.title = await updatedTitle;
+    product.price = await updatedPrice;
+    product.imageUrl = await updatedImageUrl;
+    product.description = await updatedDescription;
 
     await product.save();
     console.log("product edited ...");
-     res.redirect('/');
+    res.redirect('/');
 }
 
 exports.postDeleteProduct = (req, res) => {
@@ -91,8 +100,8 @@ exports.postDeleteProduct = (req, res) => {
             console.log('deleted product ... ');
             res.redirect('/');
         })
-        .catch(err=>{
-        console.log(err.message);
-    });
+        .catch(err => {
+            console.log(err.message);
+        });
 }
 

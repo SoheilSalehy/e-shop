@@ -10,16 +10,29 @@
                 <a href="/cart" class="tab <%= path === '/cart' ? 'active' : '' %>">سبد خرید</a>
             </li>
             <li class="nav-item">
-                <a href="" class="tab" >سفارشات</a>
+                <a href="/orders" class="tab" >سفارشات</a>
             </li>
+            <% if(isAuthenticated===true){ %>
             <li class="nav-item">
                 <a href="/admin/add_product" class="tab <%= path === '/admin/add_product' ? 'active' : '' %>">افزودن محصول</a>
             </li>
             <li class="nav-item">
                 <a href="/admin/products" class="tab" <%= path ===  '/admin/products' ? 'active' : '' %> >محصولات ادمین</a>
             </li class="nav-item">
-             <li class="nav-item" style="position: absolute; left: 7px;">
-                <a href="/login" class="tab <%= path === '/login' ? 'active' : '' %>" style="font-size: 20px;" >ورود</a>
+            <% } %>
+            <% if(!isAuthenticated){ %>
+            <li class="nav-item" style="position: absolute; left: 7px;">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <a href="/login" class="tab <%= path === '/login' ? 'active' : '' %>" style="font-size: 20px; margin-left: 85px;" >ورود</a>
             </li>
+            <li class="nav-item" style="position: absolute; left: 7px;">
+                <a href="/signup" class="tab <%= path === '/signup' ? 'active' : '' %>" style="font-size: 20px;" >ثبت نام</a>
+            </li>
+            <% }else{ %>
+            <form action="/logout" method="post" class="nav-item" style="position: absolute; left: 7px; margin-left: 70px;">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button style="font-size: 20px;" type="submit">خروج</button>
+            </form>
+            <% } %>
         </ul>
     </div>
